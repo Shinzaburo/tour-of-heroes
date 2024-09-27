@@ -1,7 +1,10 @@
-<h1>{{ title }}</h1>
+<div id="header">
+  <p id="title">{{ title }}</p>
+</div>
 <nav>
   <a routerLink="/dashboard">Dashboard</a>
   <a routerLink="/heroes">Heroes</a>
+  <a routerLink="/createHero">CreateHero</a>
 </nav>
 <router-outlet></router-outlet>
 <app-messages></app-messages>

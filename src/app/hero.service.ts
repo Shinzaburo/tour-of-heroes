@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Hero } from './hero';
@@ -10,6 +10,9 @@ import { MessageService } from './message.service';
 @Injectable({ providedIn: 'root' })
 export class HeroService {
   private heroesUrl = 'api/heroes'; // Web APIのURL
+
+  private heroSubject = new Subject<Hero>();
+  hero = this.heroSubject.asObservable();
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -62,12 +65,20 @@ export class HeroService {
     );
   }
 
+  /** ヒーローデータをSubjectを通して送信する（プレビュー画面に表示） */
+  updateHeroPreview(hero: Hero): void {
+    this.heroSubject.next(hero);
+  }
+
   //////// Save methods //////////
 
   /** POST: サーバーに新しいヒーローを登録する */
   addHero(hero: Hero): Observable<Hero> {
     return this.http.post<Hero>(this.heroesUrl, hero, this.httpOptions).pipe(
-      tap((newHero: Hero) => this.log(`added hero w/ id=${newHero.id}`)),
+      tap((newHero: Hero) => {
+        this.log(`added hero w/ id=${newHero.id}`);
+        this.updateHeroPreview(newHero); // ヒーロー作成後にプレビューへ更新を送信
+      }),
       catchError(this.handleError<Hero>('addHero'))
     );
   }
