@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Hero } from '../hero';
+import { HeroCreateService } from '../hero-create.service';
 import { HeroService } from '../hero.service';
 
 @Component({
@@ -10,10 +11,13 @@ import { HeroService } from '../hero.service';
 export class HeroCreateComponent {
   hero: Hero = { id: 0, name: '' };
 
-  constructor(private heroService: HeroService) {}
+  constructor(
+    private heroService: HeroService,
+    private heroCreateService: HeroCreateService
+  ) {}
 
   onInputChange() {
-    this.heroService.updateHeroPreview(this.hero);
+    this.heroCreateService.updateHeroPreview(this.hero);
   }
 
   createHero() {
@@ -21,7 +25,7 @@ export class HeroCreateComponent {
       const idList = heroes.map((hero) => hero.id);
       this.hero.id = this.findNewId(idList);
       this.heroService.addHero(this.hero).subscribe();
-      this.heroService.updateHeroPreview(this.hero);
+      this.heroCreateService.updateHeroPreview(this.hero);
     });
   }
 
