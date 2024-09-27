@@ -1,8 +1,28 @@
+h3 {
+  text-align: center;
+}
+
 #hero-preview {
+  background-image: url(../../../hero-preview.png);
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: center;
   border: 2px gray;
   border-radius: 10%;
-  box-shadow: 0 5px 15px 5px lightblue;
+  box-shadow: 0 5px 15px 5px gray;
   padding: 5px 10px;
   margin-left: 20px;
   height: 200px;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#hero-preview p {
+  text-align: center;
+  margin-top: 45px;
+  background-color: black;
+  color: aliceblue;
+  width: fit-content;
 }
