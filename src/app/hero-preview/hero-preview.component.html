@@ -1,7 +1,9 @@
-<div *ngIf="hero">
-  <h2>Hero Preview</h2>
-  <p>Name: {{ hero.name }}</p>
-</div>
-<div *ngIf="!hero">
-  <p>No hero to display</p>
+<div id="hero-preview">
+  <p>Hero Preview</p>
+  <div *ngIf="showFlg">
+    <p>Name: {{ hero?.name }}</p>
+  </div>
+  <div *ngIf="!showFlg">
+    <p>No hero to display</p>
+  </div>
 </div>

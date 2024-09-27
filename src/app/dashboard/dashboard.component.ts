@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HERO_CARD_WIDTH, MESSAGE_CONTAINER_WIDTH } from 'src/const';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
 
@@ -17,8 +18,10 @@ export class DashboardComponent implements OnInit {
   }
 
   getHeroes(): void {
+    const space = window.innerWidth - MESSAGE_CONTAINER_WIDTH;
+    const cardNum = space / HERO_CARD_WIDTH;
     this.heroService
       .getHeroes()
-      .subscribe((heroes) => (this.heroes = heroes.slice(1, 5)));
+      .subscribe((heroes) => (this.heroes = heroes.slice(1, cardNum + 1)));
   }
 }

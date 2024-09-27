@@ -12,8 +12,25 @@ export class HeroCreateComponent {
 
   constructor(private heroService: HeroService) {}
 
+  onInputChange() {
+    this.heroService.updateHeroPreview(this.hero);
+  }
+
   createHero() {
-    this.heroService.updateHeroPreview(this.hero); // フォームの入力を即座にプレビューに反映
-    this.heroService.addHero(this.hero).subscribe(); // サーバーにヒーローを登録
+    this.heroService.getHeroes().subscribe((heroes) => {
+      const idList = heroes.map((hero) => hero.id);
+      this.hero.id = this.findNewId(idList);
+      this.heroService.addHero(this.hero).subscribe();
+      this.heroService.updateHeroPreview(this.hero);
+    });
+  }
+
+  private findNewId(idList: number[]): number {
+    for (let id = 0; id <= idList.length; id++) {
+      if (!idList.includes(id)) {
+        return id;
+      }
+    }
+    return idList.length;
   }
 }

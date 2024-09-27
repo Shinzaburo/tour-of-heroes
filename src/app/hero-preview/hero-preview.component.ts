@@ -9,11 +9,14 @@ import { HeroService } from '../hero.service';
 export class HeroPreviewComponent implements OnInit {
   hero: Hero | undefined;
 
+  showFlg = false;
+
   constructor(private heroService: HeroService) {}
 
   ngOnInit(): void {
     this.heroService.hero.subscribe((hero) => {
-      this.hero = hero; // 受け取ったヒーロー情報を表示
+      this.hero = hero;
+      this.showFlg = this.hero !== undefined && this.hero.name !== '';
     });
   }
 }

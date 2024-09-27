@@ -1,0 +1,9 @@
+#hero-search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#hero-search h4 {
+  margin-right: 10px;
+}

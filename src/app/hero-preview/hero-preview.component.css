@@ -1,0 +1,8 @@
+#hero-preview {
+  border: 2px gray;
+  border-radius: 10%;
+  box-shadow: 0 5px 15px 5px lightblue;
+  padding: 5px 10px;
+  margin-left: 20px;
+  height: 200px;
+}

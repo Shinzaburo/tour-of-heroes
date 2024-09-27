@@ -1,8 +1,14 @@
-<div>
-  <label
-    >Hero Name:
-    <input [(ngModel)]="hero.name" placeholder="name" />
-  </label>
-  <button (click)="createHero()">Create Hero</button>
+<div id="hero-create">
+  <div id="hero-input">
+    <label
+      >Hero Name:
+      <input
+        [(ngModel)]="hero.name"
+        (ngModelChange)="onInputChange()"
+        placeholder="name"
+      />
+    </label>
+    <button (click)="createHero()">Create</button>
+  </div>
   <app-hero-preview></app-hero-preview>
 </div>
