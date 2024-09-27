@@ -1,17 +1,23 @@
-/* AppComponent's private CSS styles */
 #header {
   margin: 0;
+  height: 20rem;
   display: flex;
-  background-color: aquamarine;
+  background-image: url(../../hero.png);
   justify-content: center;
+  align-items: center;
 }
 
 #title {
-  font-size: 2em;
+  color: antiquewhite;
+  font-weight: bold;
+  font-size: 3em;
 }
+
 nav {
   display: flex;
   align-items: center;
+  justify-content: center;
+  margin-left: 5px;
 }
 
 nav a {
@@ -47,4 +53,10 @@ nav a:hover {
 }
 nav a.active {
   color: #039be5;
+}
+
+#main-contents {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
